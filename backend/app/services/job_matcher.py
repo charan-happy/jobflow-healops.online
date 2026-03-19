@@ -106,8 +106,8 @@ def calculate_match_score(user: User, job: Job) -> tuple[float, list[str]]:
     # Blend with semantic similarity if both embeddings exist
     final_score = rule_score
     if (
-        hasattr(user, "profile_embedding") and user.profile_embedding
-        and hasattr(job, "embedding") and job.embedding
+        hasattr(user, "profile_embedding") and user.profile_embedding is not None
+        and hasattr(job, "embedding") and job.embedding is not None
     ):
         try:
             user_emb = list(user.profile_embedding) if not isinstance(user.profile_embedding, list) else user.profile_embedding
